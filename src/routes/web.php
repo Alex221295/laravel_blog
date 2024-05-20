@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Admin\Main\AdminIndexController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,12 @@ Route::group(['namespace' => 'Main'], function () {
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => 'Main'], function () {
-        Route::get('/', [AdminIndexController::class, 'index'])->name('index');
+        Route::get('/', [AdminIndexController::class, 'index'])->name('admin.index');
+    });
+    Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('admin.category.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
     });
 });
 
