@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add category</h1>
+                        <h1 class="m-0">Update category</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -25,16 +25,17 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-4">
-                            <form method="post" action="{{route('admin.category.store')}}">
+                            <form method="post" action="{{route('admin.category.update',$category->id)}}">
                                 @csrf
-                                <input type="text" name="title" class="form-control w-400" placeholder="Add category"
+                                @method('patch')
+                                <input type="text" name="title" class="form-control w-400" value="{{$category->title}}" placeholder="enter category"
                                        aria-label="Add category">
                                 @error('title')
                                 <div class="text-danger">
                                 {{$message}}
                                 </div>
                                 @enderror
-                                <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="Add category">
+                                <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="update">
                             </form>
                     </div>
                     <!-- ./col -->
