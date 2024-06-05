@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Tag\TagController;
 use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Admin\Main\AdminIndexController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('admin.category.edit');
         Route::patch('/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
         Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+    });
+    Route::group(['namespace' => 'Tag', 'prefix' => 'tags'], function () {
+        Route::get('/', [TagController::class, 'index'])->name('admin.tag.index');
+        Route::get('/create', [TagController::class, 'create'])->name('admin.tag.create');
+        Route::post('/store', [TagController::class, 'store'])->name('admin.tag.store');
+        Route::get('/{tag}', [TagController::class, 'show'])->name('admin.tag.show');
+        Route::get('/{tag}/edit', [TagController::class, 'edit'])->name('admin.tag.edit');
+        Route::patch('/{tag}', [TagController::class, 'update'])->name('admin.tag.update');
+        Route::delete('/{tag}', [TagController::class, 'destroy'])->name('admin.tag.destroy');
     });
 });
 
