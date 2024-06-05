@@ -12,14 +12,14 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index(Category $category): view
+    public function index(Category $category): View
     {
 
         $getCategory = Category::get();
         return view('admin.category.index', compact('category', 'getCategory'));
     }
 
-    public function create(): view
+    public function create(): View
     {
         return view('admin.category.create');
     }
@@ -31,20 +31,26 @@ class CategoryController extends Controller
         return redirect()->route('admin.category.index');
     }
 
-    public function show(Category $category): view
+    public function show(Category $category): View
     {
         return view('admin.category.show', compact('category'));
     }
 
-    public function edit(Category $category): view
+    public function edit(Category $category): View
     {
         return view('admin.category.edit', compact('category'));
     }
 
-    public function update(UpdateRequest $request,Category $category): view
+    public function update(UpdateRequest $request,Category $category): View
     {
         $data = $request->validated();
         $category->update($data);
         return view('admin.category.show', compact('category'));
+    }
+
+    public function destroy(Category $category): RedirectResponse
+    {
+        $category->delete();
+        return redirect()->route('admin.category.index');
     }
 }
