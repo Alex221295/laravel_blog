@@ -8,7 +8,7 @@
                     <div class="col-sm-6 d-flex align-items-center">
                         <h1 class="m-0 mr-2 ">Category {{$post->title}}</h1>
                             <a href="{{route('admin.post.edit',$post->id)}}"><i class="fas fa-pen"></i></a>
-                        <form action="{{route('admin.ost.destroy',$post->id)}}" method="post">
+                        <form action="{{route('admin.post.destroy',$post->id)}}" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit" class="border-0 bg-transparent">
@@ -52,7 +52,7 @@
                                     <tbody>
                                         <tr>
                                             <td>{{$post->id}}</td>
-                                            <td>{{$ost->title}}</td>
+                                            <td>{{$post->title}}</td>
                                             <td>{{$post->created_at}}</td>
                                             <td><span class="tag tag-success">Approved</span></td>
                                         </tr>

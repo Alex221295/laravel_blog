@@ -1,5 +1,13 @@
 @extends('admin.layouts.main')
 @section('content')
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -40,6 +48,7 @@
                                 <div class="text-danger">
                                 {{$message}}
                                 </div>
+                                    <textarea id="summernote" name="editordata"></textarea>
                                 @enderror
 {{--                                <select class="form-control mt-4 w-400">--}}
 {{--                                    @foreach($getCategory as $categoryForPost)--}}
@@ -62,3 +71,8 @@
         <!-- /.content -->
     </div>
 @endsection
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+</script>
