@@ -10,6 +10,7 @@ use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -29,6 +30,8 @@ class PostController extends Controller
     public function store(StoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
+        $data['main_image'] = Storage::put('/image', $data['main_image']);
+        $data['preview_image'] = Storage::put('/image', $data['preview_image']);
         Post::firstOrCreate($data);
         return redirect()->route('admin.post.index');
     }

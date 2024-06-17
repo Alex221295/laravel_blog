@@ -33,41 +33,66 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                            <form method="post" action="{{route('admin.post.store')}}">
-                                @csrf
-                                <input type="text" name="title" class="form-control w-25" placeholder="Add title"
-                                       aria-label="Add post" value="{{old('title')}}">
-                                @error('title')
-                                <div class="text-danger">
+                        <form method="post" action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="text" name="title" class="form-control w-25" placeholder="Add title"
+                                   aria-label="Add post" value="{{old('title')}}">
+                            @error('title')
+                            <div class="text-danger">
                                 {{$message}}
-                                </div>
-                                @enderror
-                                <div class="form-group mt-4" >
-                                <textarea id="summernote" class="form-control  w-400"  placeholder="Add content"
+                            </div>
+                            @enderror
+                            <div class="form-group mt-4">
+                                <textarea id="summernote" class="form-control  w-400" placeholder="Add content"
                                           aria-label="Add post" name="content">
                                     {{old('content')}}
                                 </textarea>
-                                </div>
+                            </div>
 
-                                @error('content')
-                                <div class="text-danger">
+                            @error('content')
+                            <div class="text-danger">
                                 {{$message}}
+                            </div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <div class="input-group w-25" style="display:flex">
+                                    <div class="custom-file">
+                                        <input type="file" value="{{old('title')}}" class="custom-file-input" name="main_image">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
                                 </div>
-                                @enderror
-{{--                                <select class="form-control mt-4 w-400">--}}
-{{--                                    @foreach($getCategory as $categoryForPost)--}}
-{{--                                        <option>{{$categoryForPost->id}}</option>--}}
-{{--                                    @endforeach--}}
-{{--                                </select>--}}
-{{--                                @error('content')--}}
-{{--                                <div class="text-danger">--}}
-{{--                                {{$message}}--}}
-{{--                                </div>--}}
-{{--                                @enderror--}}
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="Add post">
+                            </div>
+                            @error('main_image')
+                            <div class="text-danger">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <div class="input-group w-25" style="display:flex">
+                                    <div class="custom-file">
+                                        <input type="file" value="{{old('title')}}" class="custom-file-input" name="preview_image">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
+                            @error('preview_image')
+                            <div class="text-danger">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="Add post">
+                            </div>
+
+                        </form>
                     </div>
                     <!-- ./col -->
                 </div>
