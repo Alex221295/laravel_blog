@@ -63,6 +63,7 @@
                                             <th>User</th>
                                             <th>Date</th>
                                             <th>Status</th>
+                                            <th>Category</th>
                                             <th>Content</th>
                                             <th colspan="3" class="text-center">Action</th>
                                         </tr>
@@ -75,6 +76,8 @@
                                                 <td>{{$post->title}}</td>
                                                 <td>{{$post->created_at}}</td>
                                                 <td><span class="tag tag-success">Approved</span></td>
+{{--                                                <td>{{$post->category_id->title}}</td>--}}
+
                                                 <td>{{$post->content}}</td>
                                                 <td class="text-center">
                                                     <a href="{{route('admin.post.show',$post->id)}}"><i
@@ -93,6 +96,7 @@
                                                         </button>
                                                     </form>
                                                 </td>
+
 
                                             </tr>
                                         @endforeach

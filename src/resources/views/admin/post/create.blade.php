@@ -33,7 +33,8 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form method="post" action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
+                        <form method="post" action="{{route('admin.post.store')}}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             <input type="text" name="title" class="form-control w-25" placeholder="Add title"
                                    aria-label="Add post" value="{{old('title')}}">
@@ -58,7 +59,8 @@
                                 <label for="exampleInputFile">File input</label>
                                 <div class="input-group w-25" style="display:flex">
                                     <div class="custom-file">
-                                        <input type="file" value="{{old('title')}}" class="custom-file-input" name="main_image">
+                                        <input type="file" value="{{old('title')}}" class="custom-file-input"
+                                               name="main_image">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
                                     <div class="input-group-append">
@@ -75,15 +77,29 @@
                                 <label for="exampleInputFile">File input</label>
                                 <div class="input-group w-25" style="display:flex">
                                     <div class="custom-file">
-                                        <input type="file" value="{{old('title')}}" class="custom-file-input" name="preview_image">
+                                        <input type="file" value="{{old('title')}}" class="custom-file-input"
+                                               name="preview_image">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
                                     </div>
                                 </div>
                             </div>
                             @error('preview_image')
+                            <div class="text-danger">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <div class="">
+                                <select class="w-25" name="category_id">
+                                    @foreach($getCategory as $category)
+                                        <option value="{{$category->id}}"
+                                        {{$category->id == old('category_id') ? 'selected' : ''}}
+                                        >
+                                            {{$category->title}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('category')
                             <div class="text-danger">
                                 {{$message}}
                             </div>

@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class PostController extends Controller
 
     public function create(Category $category): View
     {
-        $getCategory = Category::get();
+        $getCategory = Category::all();
         return view('admin.post.create', compact('category','getCategory'));
     }
 
