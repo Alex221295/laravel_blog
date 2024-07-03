@@ -90,7 +90,7 @@
                             @enderror
                             <div class="">
                                 <select class="w-25" name="category_id">
-                                    @foreach($getCategory as $category)
+                                    @foreach($getCategories as $category)
                                         <option value="{{$category->id}}"
                                         {{$category->id == old('category_id') ? 'selected' : ''}}
                                         >
@@ -104,6 +104,15 @@
                                 {{$message}}
                             </div>
                             @enderror
+                            <div class="form-group">
+                                <label>Multiple (.select2-purple)</label>
+                                <div class="select2-purple">
+                                    <select class="select2 select2-hidden-accessible" name='tag_ids[]' multiple="" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" data-select2-id="15" tabindex="-1" aria-hidden="true">
+                                        @foreach($getTags as $tag)
+                                            <option {{is_array(old('tag_ids')) && in_array($tag->id,old('tag_ids')) ? 'selected' : ''}} value="{{$tag->id}} ">{{$tag->title}}</option>
+                                        @endforeach
+                                    </select></div>
+                            </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="Add post">
                             </div>

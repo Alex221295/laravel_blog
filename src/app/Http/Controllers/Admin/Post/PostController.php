@@ -22,18 +22,26 @@ class PostController extends Controller
         return view('admin.post.index', compact('post', 'getPost'));
     }
 
-    public function create(Category $category): View
+    public function create(): View
     {
-        $getCategory = Category::all();
-        return view('admin.post.create', compact('category','getCategory'));
+        $getCategories = Category::all();
+        $getTags = Tag::all();
+        return view('admin.post.create', compact('getCategories','getTags'));
     }
 
     public function store(StoreRequest $request): RedirectResponse
     {
-        $data = $request->validated();
-        $data['main_image'] = Storage::put('/image', $data['main_image']);
-        $data['preview_image'] = Storage::put('/image', $data['preview_image']);
-        Post::firstOrCreate($data);
+        try {
+            $data = $request->validated();
+            $tagIds = $data['tag_ids'];
+            unset($data['tag_ids']);
+            $data['main_image'] = Storage::put('/image', $data['main_image']);
+            $data['preview_image'] = Storage::put('/image', $data['preview_image']);
+            $post = Post::firstOrCreate($data);
+            $post->tags()->sync($tagIds);
+        }catch (\Exception $exception){
+            abort(500);
+        }
         return redirect()->route('admin.post.index');
     }
 
