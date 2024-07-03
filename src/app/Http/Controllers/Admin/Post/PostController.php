@@ -35,8 +35,8 @@ class PostController extends Controller
             $data = $request->validated();
             $tagIds = $data['tag_ids'];
             unset($data['tag_ids']);
-            $data['main_image'] = Storage::put('/image', $data['main_image']);
-            $data['preview_image'] = Storage::put('/image', $data['preview_image']);
+            $data['main_image'] = Storage::disk('public')->put('/image', $data['main_image']);
+            $data['preview_image'] = Storage::disk('public')->put('/image', $data['preview_image']);
             $post = Post::firstOrCreate($data);
             $post->tags()->sync($tagIds);
         }catch (\Exception $exception){
@@ -52,13 +52,26 @@ class PostController extends Controller
 
     public function edit(Post $post): View
     {
-        return view('admin.post.edit', compact('post'));
+        $getCategories = Category::all();
+        $getTags = Tag::all();
+
+        return view('admin.post.edit', compact('post','getCategories','getTags'));
     }
 
     public function update(UpdateRequest $request,Post $post): View
     {
-        $data = $request->validated();
-        $post->update($data);
+        try {
+            $data = $request->validated();
+            $tagIds = $data['tag_ids'];
+            unset($data['tag_ids']);
+            $data['main_image'] = Storage::disk('public')->put('/image', $data['main_image']);
+            $data['preview_image'] = Storage::disk('public')->put('/image', $data['preview_image']);
+            $post->update($data);
+            $post->tags()->sync($tagIds);
+        }catch (\Exception $exception){
+            abort(500);
+        }
+
         return view('admin.post.show', compact('post'));
     }
 

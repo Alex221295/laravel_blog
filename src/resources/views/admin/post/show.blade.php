@@ -1,12 +1,14 @@
 @extends('admin.layouts.main')
 @section('content')
+    <?php /**  @var \App\Models\Post $post */ ?>
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
-                        <h1 class="m-0 mr-2 ">Category {{$post->title}}</h1>
+                        <h1 class="m-0 mr-2 ">Post {{$post->title}}</h1>
                             <a href="{{route('admin.post.edit',$post->id)}}"><i class="fas fa-pen"></i></a>
                         <form action="{{route('admin.post.destroy',$post->id)}}" method="post">
                             @csrf
@@ -42,10 +44,12 @@
 
                                     <tr>
                                         <th>ID</th>
-                                        <th>User</th>
+                                        <th>Title</th>
                                         <th>Date</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Content</th>
+                                        <th>Category</th>
+                                        <th>Tag</th>
                                     </tr>
 
                                     </thead>
@@ -55,6 +59,8 @@
                                             <td>{{$post->title}}</td>
                                             <td>{{$post->created_at}}</td>
                                             <td><span class="tag tag-success">Approved</span></td>
+                                            <td>{{$post->content}}</td>
+                                            <td>{{$post->category_id}}</td>
                                         </tr>
 
                                     </tbody>

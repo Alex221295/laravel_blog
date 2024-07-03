@@ -1,5 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
+    <?php /**  @var \App\Models\Post $post */ ?>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -24,18 +25,94 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-4">
-                            <form method="post" action="{{route('admin.post.update',$post->id)}}">
+                    <div class="col-12">
+                            <form method="post" action="{{route('admin.post.update',$post->id)}}" enctype="multipart/form-data">
                                 @csrf
                                 @method('patch')
-                                <input type="text" name="title" class="form-control w-400" value="{{$post->title}}" placeholder="enter post"
-                                       aria-label="Add post">
+                                <input type="text" name="title" class="form-control w-25" placeholder="Add title"
+                                       aria-label="Add post" value="{{$post->title}}">
                                 @error('title')
                                 <div class="text-danger">
-                                {{$message}}
+                                    {{$message}}
                                 </div>
                                 @enderror
-                                <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="update">
+                                <div class="form-group mt-4">
+                                <textarea id="summernote" class="form-control  w-400" placeholder="Add content"
+                                          aria-label="Add post" name="content">
+                                    {{$post->content}}
+                                </textarea>
+                                </div>
+
+                                @error('content')
+                                <div class="text-danger">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                                <div class="w-50 mb-3">
+                                    <img src="{{asset('storage/' . $post->main_image)}}" alt="main_image" class="w-25">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <div class="input-group w-25" style="display:flex">
+                                        <div class="custom-file">
+                                            <input type="file" value="{{old('title')}}" class="custom-file-input"
+                                                   name="main_image">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                @error('main_image')
+                                <div class="text-danger">
+                                    {{$message}}
+                                </div>
+                                @enderror
+
+                                <div class="w-50 mb-3">
+                                    <img src="{{asset('storage/' . $post->preview_image)}}" alt="preview_image" class="w-25">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <div class="input-group w-25" style="display:flex">
+                                        <div class="custom-file">
+                                            <input type="file" value="{{old('title')}}" class="custom-file-input"
+                                                   name="preview_image">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                @error('preview_image')
+                                <div class="text-danger">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                                <div class="">
+                                    <select class="w-25" name="category_id">
+                                        @foreach($getCategories as $category)
+                                            <option value="{{$category->id}}"
+                                                {{$category->id == $post->category_id ? 'selected' : ''}}
+                                            >
+                                                {{$category->title}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('category')
+                                <div class="text-danger">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                                <div class="form-group">
+                                    <label>Multiple (.select2-purple)</label>
+                                    <div class="select2-purple">
+                                        <select class="select2 select2-hidden-accessible" name='tag_ids[]' multiple="" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" data-select2-id="15" tabindex="-1" aria-hidden="true">
+                                            @foreach($getTags as $tag)
+                                                <option {{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id,$post->tags->pluck('id')->toArray()) ? 'selected' : ''}} value="{{$tag->id}} ">{{$tag->title}}</option>
+                                            @endforeach
+                                        </select></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="update">
+                                </div>
                             </form>
                     </div>
                     <!-- ./col -->
