@@ -13,7 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     public function index(Post $post): View
     {
@@ -26,22 +26,15 @@ class PostController extends Controller
     {
         $getCategories = Category::all();
         $getTags = Tag::all();
+
         return view('admin.post.create', compact('getCategories','getTags'));
     }
 
     public function store(StoreRequest $request): RedirectResponse
     {
-        try {
-            $data = $request->validated();
-            $tagIds = $data['tag_ids'];
-            unset($data['tag_ids']);
-            $data['main_image'] = Storage::disk('public')->put('/image', $data['main_image']);
-            $data['preview_image'] = Storage::disk('public')->put('/image', $data['preview_image']);
-            $post = Post::firstOrCreate($data);
-            $post->tags()->sync($tagIds);
-        }catch (\Exception $exception){
-            abort(500);
-        }
+        $dataValidation = $request->validated();
+        $this->service->store($dataValidation);
+
         return redirect()->route('admin.post.index');
     }
 
@@ -60,17 +53,8 @@ class PostController extends Controller
 
     public function update(UpdateRequest $request,Post $post): View
     {
-        try {
-            $data = $request->validated();
-            $tagIds = $data['tag_ids'];
-            unset($data['tag_ids']);
-            $data['main_image'] = Storage::disk('public')->put('/image', $data['main_image']);
-            $data['preview_image'] = Storage::disk('public')->put('/image', $data['preview_image']);
-            $post->update($data);
-            $post->tags()->sync($tagIds);
-        }catch (\Exception $exception){
-            abort(500);
-        }
+        $dataValidation = $request->validated();
+        $post = $this->service->update($dataValidation,$post);
 
         return view('admin.post.show', compact('post'));
     }
