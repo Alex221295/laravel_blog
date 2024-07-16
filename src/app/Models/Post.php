@@ -14,13 +14,13 @@ class Post extends Model
     protected $table = 'posts';
     protected $guarded = false;
 
-    public function tags()
+    public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
 
     }
 
-    public function category()
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class,'category_id');
     }
