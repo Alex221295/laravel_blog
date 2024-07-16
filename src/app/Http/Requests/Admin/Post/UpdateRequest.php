@@ -30,4 +30,24 @@ class UpdateRequest extends FormRequest
             'tag_ids'=>'nullable|array',
             'tag_ids.*'=>'nullable|integer|exists:tags,id',        ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.string'=>'Title must be a string.',
+            'title.required'=>'Title is required.',
+            'content.string'=>'Content must be a string.',
+            'content.required'=>'Content is required.',
+            'main_image.file'=>'Main image must be a file.',
+            'main_image.required'=>'Main image is required.',
+            'preview_image.required'=>'Preview image is required.',
+            'category_id.integer'=>'Category must be an integer.',
+            'category_id.required'=>'Category is required.',
+            'category_id.exists'=>'Category is not exists.',
+            'tag_ids.array'=>'Tags must be an array.',
+            'tag_ids.integer'=>'Tags must be an integer.',
+            'tag_ids.exists'=>'Tags is not exists.',
+        ];
+    }
+
 }
