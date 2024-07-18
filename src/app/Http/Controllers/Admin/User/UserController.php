@@ -22,7 +22,7 @@ class UserController extends Controller
     public function create(User $user): View
     {
         $roles = User::getRoles();
-        return view('admin.user.create', compact( 'roles'));
+        return view('admin.user.create', compact('roles'));
     }
 
     public function store(StoreRequest $request): RedirectResponse
@@ -41,10 +41,10 @@ class UserController extends Controller
     public function edit(User $user): View
     {
         $roles = User::getRoles();
-        return view('admin.user.edit', compact('user','roles'));
+        return view('admin.user.edit', compact('user', 'roles'));
     }
 
-    public function update(UpdateRequest $request,User $user): View
+    public function update(UpdateRequest $request, User $user): View
     {
         $data = $request->validated();
         $user->update($data);

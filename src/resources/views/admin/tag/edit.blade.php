@@ -25,18 +25,19 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-4">
-                            <form method="post" action="{{route('admin.tag.update',$tag->id)}}">
-                                @csrf
-                                @method('patch')
-                                <input type="text" name="title" class="form-control w-400" value="{{$tag->title}}" placeholder="enter tag"
-                                       aria-label="Add tag">
-                                @error('title')
-                                <div class="text-danger">
+                        <form method="post" action="{{route('admin.tag.update',$tag->id)}}">
+                            @csrf
+                            @method('patch')
+                            <input type="text" name="title" class="form-control w-400" value="{{$tag->title}}"
+                                   placeholder="enter tag"
+                                   aria-label="Add tag">
+                            @error('title')
+                            <div class="text-danger">
                                 {{$message}}
-                                </div>
-                                @enderror
-                                <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="update">
-                            </form>
+                            </div>
+                            @enderror
+                            <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="update">
+                        </form>
                     </div>
                     <!-- ./col -->
                 </div>

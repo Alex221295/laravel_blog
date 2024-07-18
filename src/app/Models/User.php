@@ -49,7 +49,7 @@ class User extends Authenticatable
     const ADMIN_ROLE = '0';
     const USER_ROLE = '1';
 
-    public static function getRoles():array
+    public static function getRoles(): array
     {
         return [
             self::ADMIN_ROLE => 'Admin',

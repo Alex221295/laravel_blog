@@ -27,7 +27,7 @@ class PostController extends BaseController
         $getCategories = Category::all();
         $getTags = Tag::all();
 
-        return view('admin.post.create', compact('getCategories','getTags'));
+        return view('admin.post.create', compact('getCategories', 'getTags'));
     }
 
     public function store(StoreRequest $request): RedirectResponse
@@ -48,13 +48,13 @@ class PostController extends BaseController
         $getCategories = Category::all();
         $getTags = Tag::all();
 
-        return view('admin.post.edit', compact('post','getCategories','getTags'));
+        return view('admin.post.edit', compact('post', 'getCategories', 'getTags'));
     }
 
-    public function update(UpdateRequest $request,Post $post): View
+    public function update(UpdateRequest $request, Post $post): View
     {
         $dataValidation = $request->validated();
-        $post = $this->service->update($dataValidation,$post);
+        $post = $this->service->update($dataValidation, $post);
 
         return view('admin.post.show', compact('post'));
     }

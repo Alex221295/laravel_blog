@@ -83,7 +83,8 @@
                                                             class="fas fa-pen"></i></a>
                                                 </td>
                                                 <td class="text-center">
-                                                    <form action="{{route('admin.user.destroy',$user->id)}}" method="post">
+                                                    <form action="{{route('admin.user.destroy',$user->id)}}"
+                                                          method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="border-0 bg-transparent">

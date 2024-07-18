@@ -25,17 +25,17 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-4">
-                            <form method="post" action="{{route('admin.category.store')}}">
-                                @csrf
-                                <input type="text" name="title" class="form-control w-400" placeholder="Add category"
-                                       aria-label="Add category">
-                                @error('title')
-                                <div class="text-danger">
+                        <form method="post" action="{{route('admin.category.store')}}">
+                            @csrf
+                            <input type="text" name="title" class="form-control w-400" placeholder="Add category"
+                                   aria-label="Add category">
+                            @error('title')
+                            <div class="text-danger">
                                 {{$message}}
-                                </div>
-                                @enderror
-                                <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="Add category">
-                            </form>
+                            </div>
+                            @enderror
+                            <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="Add category">
+                        </form>
                     </div>
                     <!-- ./col -->
                 </div>

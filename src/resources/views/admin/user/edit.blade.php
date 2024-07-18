@@ -25,47 +25,49 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-4">
-                            <form method="post" action="{{route('admin.user.update',$user->id)}}">
-                                @csrf
-                                @method('patch')
-                                <input type="text" name="name" class="form-control w-400" value="{{$user->name}}" placeholder="enter name"
-                                       aria-label="Add user">
-                                @error('name')
-                                <div class="text-danger">
+                        <form method="post" action="{{route('admin.user.update',$user->id)}}">
+                            @csrf
+                            @method('patch')
+                            <input type="text" name="name" class="form-control w-400" value="{{$user->name}}"
+                                   placeholder="enter name"
+                                   aria-label="Add user">
+                            @error('name')
+                            <div class="text-danger">
                                 {{$message}}
-                                </div>
-                                @enderror
-                                <input type="email" name="email" class="form-control w-400" value="{{$user->email}}" placeholder="enter email"
-                                       aria-label="Add email">
-                                @error('email')
-                                <div class="text-danger">
+                            </div>
+                            @enderror
+                            <input type="email" name="email" class="form-control w-400" value="{{$user->email}}"
+                                   placeholder="enter email"
+                                   aria-label="Add email">
+                            @error('email')
+                            <div class="text-danger">
                                 {{$message}}
-                                </div>
-                                @enderror
-                                <div class="form-group mt-3">
-                                    <label>Select a role</label>
-                                </div>
-                                <div class="form-group">
-                                    <select class="w-25 mt-1" name="role">
-                                        @foreach($roles as $id => $role)
-                                            <option value="{{$id}}"
-                                                {{$id == $user->role ? 'selected' : ''}}
-                                            >
-                                                {{$role}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @error('role')
-                                <div class="text-danger">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                                <div class="form-group">
-                                    <input type="hidden" name="user_id" value="{{$user->id}}">
-                                </div>
-                                <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="update">
-                            </form>
+                            </div>
+                            @enderror
+                            <div class="form-group mt-3">
+                                <label>Select a role</label>
+                            </div>
+                            <div class="form-group">
+                                <select class="w-25 mt-1" name="role">
+                                    @foreach($roles as $id => $role)
+                                        <option value="{{$id}}"
+                                            {{$id == $user->role ? 'selected' : ''}}
+                                        >
+                                            {{$role}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('role')
+                            <div class="text-danger">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <div class="form-group">
+                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                            </div>
+                            <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="update">
+                        </form>
                     </div>
                     <!-- ./col -->
                 </div>

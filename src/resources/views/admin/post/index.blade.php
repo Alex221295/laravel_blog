@@ -76,7 +76,7 @@
                                                 <td>{{$post->title}}</td>
                                                 <td>{{$post->created_at}}</td>
                                                 <td><span class="tag tag-success">Approved</span></td>
-{{--                                                <td>{{$post->category_id->title}}</td>--}}
+                                                {{--                                                <td>{{$post->category_id->title}}</td>--}}
 
                                                 <td>{{$post->content}}</td>
                                                 <td class="text-center">
@@ -88,7 +88,8 @@
                                                             class="fas fa-pen"></i></a>
                                                 </td>
                                                 <td class="text-center">
-                                                    <form action="{{route('admin.post.destroy',$post->id)}}" method="post">
+                                                    <form action="{{route('admin.post.destroy',$post->id)}}"
+                                                          method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="border-0 bg-transparent">

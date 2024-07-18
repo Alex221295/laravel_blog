@@ -7,7 +7,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
                         <h1 class="m-0 mr-2 ">Tag {{$tag->title}}</h1>
-                            <a href="{{route('admin.tag.edit',$tag->id)}}"><i class="fas fa-pen"></i></a>
+                        <a href="{{route('admin.tag.edit',$tag->id)}}"><i class="fas fa-pen"></i></a>
                         <form action="{{route('admin.tag.destroy',$tag->id)}}" method="post">
                             @csrf
                             @method('delete')
@@ -32,7 +32,7 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="col-12">
-                <!-- /.row -->
+                    <!-- /.row -->
                     <div class="col-12">
                         <div class="card">
                             <!-- /.card-header -->
@@ -50,12 +50,12 @@
 
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>{{$tag->id}}</td>
-                                            <td>{{$tag->title}}</td>
-                                            <td>{{$tag->created_at}}</td>
-                                            <td><span class="tag tag-success">Approved</span></td>
-                                        </tr>
+                                    <tr>
+                                        <td>{{$tag->id}}</td>
+                                        <td>{{$tag->title}}</td>
+                                        <td>{{$tag->created_at}}</td>
+                                        <td><span class="tag tag-success">Approved</span></td>
+                                    </tr>
 
                                     </tbody>
                                 </table>
@@ -66,7 +66,7 @@
                     </div>
                     <a href="{{route('admin.tag.index')}}">Back</a>
 
-            </div><!-- /.container-fluid -->
+                </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
     </div>

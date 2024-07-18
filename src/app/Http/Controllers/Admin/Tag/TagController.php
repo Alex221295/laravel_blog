@@ -41,7 +41,7 @@ class TagController extends Controller
         return view('admin.tag.edit', compact('tag'));
     }
 
-    public function update(UpdateRequest $request,Tag $tag): View
+    public function update(UpdateRequest $request, Tag $tag): View
     {
         $data = $request->validated();
         $tag->update($data);

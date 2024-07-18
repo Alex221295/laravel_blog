@@ -41,7 +41,7 @@ class CategoryController extends Controller
         return view('admin.category.edit', compact('category'));
     }
 
-    public function update(UpdateRequest $request,Category $category): View
+    public function update(UpdateRequest $request, Category $category): View
     {
         $data = $request->validated();
         $category->update($data);

@@ -9,7 +9,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
                         <h1 class="m-0 mr-2 ">Post {{$post->title}}</h1>
-                            <a href="{{route('admin.post.edit',$post->id)}}"><i class="fas fa-pen"></i></a>
+                        <a href="{{route('admin.post.edit',$post->id)}}"><i class="fas fa-pen"></i></a>
                         <form action="{{route('admin.post.destroy',$post->id)}}" method="post">
                             @csrf
                             @method('delete')
@@ -34,7 +34,7 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="col-12">
-                <!-- /.row -->
+                    <!-- /.row -->
                     <div class="col-12">
                         <div class="card">
                             <!-- /.card-header -->
@@ -54,14 +54,14 @@
 
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>{{$post->id}}</td>
-                                            <td>{{$post->title}}</td>
-                                            <td>{{$post->created_at}}</td>
-                                            <td><span class="tag tag-success">Approved</span></td>
-                                            <td>{{$post->content}}</td>
-                                            <td>{{$post->category_id}}</td>
-                                        </tr>
+                                    <tr>
+                                        <td>{{$post->id}}</td>
+                                        <td>{{$post->title}}</td>
+                                        <td>{{$post->created_at}}</td>
+                                        <td><span class="tag tag-success">Approved</span></td>
+                                        <td>{{$post->content}}</td>
+                                        <td>{{$post->category_id}}</td>
+                                    </tr>
 
                                     </tbody>
                                 </table>
@@ -72,7 +72,7 @@
                     </div>
                     <a href="{{route('admin.post.index')}}">Back</a>
 
-            </div><!-- /.container-fluid -->
+                </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
     </div>
