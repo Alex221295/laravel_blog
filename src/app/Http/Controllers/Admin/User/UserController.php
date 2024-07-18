@@ -19,16 +19,16 @@ class UserController extends Controller
         return view('admin.user.index', compact('user', 'getUser'));
     }
 
-    public function create(): View
+    public function create(User $user): View
     {
-        return view('admin.user.create');
+        $roles = User::getRoles();
+        return view('admin.user.create', compact( 'roles'));
     }
 
     public function store(StoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
-//        dd($data);
         User::firstOrCreate(['email' => $data['email']], $data);
         return redirect()->route('admin.user.index');
     }
@@ -40,7 +40,8 @@ class UserController extends Controller
 
     public function edit(User $user): View
     {
-        return view('admin.user.edit', compact('user'));
+        $roles = User::getRoles();
+        return view('admin.user.edit', compact('user','roles'));
     }
 
     public function update(UpdateRequest $request,User $user): View

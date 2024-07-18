@@ -42,6 +42,28 @@
                                 {{$message}}
                                 </div>
                                 @enderror
+                                <div class="form-group mt-3">
+                                    <label>Select a role</label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="w-25 mt-1" name="role">
+                                        @foreach($roles as $id => $role)
+                                            <option value="{{$id}}"
+                                                {{$id == $user->role ? 'selected' : ''}}
+                                            >
+                                                {{$role}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('role')
+                                <div class="text-danger">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                                <div class="form-group">
+                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                </div>
                                 <input type="submit" class="btn btn-block btn-primary mt-4 w-25" value="update">
                             </form>
                     </div>

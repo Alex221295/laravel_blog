@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -45,4 +46,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    const ADMIN_ROLE = '0';
+    const USER_ROLE = '1';
+
+    public static function getRoles():array
+    {
+        return [
+            self::ADMIN_ROLE => 'Admin',
+            self::USER_ROLE => 'User',
+        ];
+    }
 }
