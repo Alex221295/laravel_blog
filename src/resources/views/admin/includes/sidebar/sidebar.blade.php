@@ -6,6 +6,13 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item menu-is-opening menu-open">
+                <a href="{{route('admin.index')}}" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <p>
+                        Home
+                    </p>
+                </a>
+            <li class="nav-item menu-is-opening menu-open">
                 <a href="{{route('admin.tag.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
@@ -28,7 +35,7 @@
                     </p>
                 </a>
                 <a href="{{route('admin.user.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-edit"></i>
+                    <i class="fas fa-users"></i>
                     <p>
                         Users
                         <i class="fas fa-angle-left right"></i>
