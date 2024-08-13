@@ -25,12 +25,13 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', [IndexController::class, 'index'])->name('index');
 });
-Route::group(['namespace' => 'Personal', 'prefix' => 'personal'], function () {
+Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'admin']], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', [PersonalIndexController::class, 'index'])->name('personal.index');
     });
     Route::group(['namespace' => 'Liked', 'prefix' => 'liked'], function () {
         Route::get('/', [LikedIndexController::class, 'index'])->name('personal.liked.index');
+        Route::delete('/{post}', [LikedIndexController::class, 'delete'])->name('personal.liked.destroy');
     });
     Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function () {
         Route::get('/', [CommentIndexController::class, 'index'])->name('personal.comment.index');
