@@ -25,19 +25,6 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                {{--                                <h3>{{$count['tagsCount']}}</h3>--}}
-
-                                <p>like post</p>
-                            </div>
-                            <div class="icon">
-                                <i class="far fa-heart"></i>
-                            </div>
-                            <a href="{{route('admin.tag.index')}}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
                     </div>
                     <div class="col-12">
                         <div class="card">
@@ -65,7 +52,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
-                                        <th colspan="3" class="text-center">Action</th>
+                                        <th colspan="2" class="text-center">Action</th>
                                     </tr>
 
                                     </thead>

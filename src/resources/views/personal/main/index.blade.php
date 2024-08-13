@@ -35,7 +35,7 @@
                             <div class="icon">
                                 <i class="far fa-heart"></i>
                             </div>
-                            <a href="{{route('admin.tag.index')}}" class="small-box-footer">More info <i
+                            <a href="{{route('personal.liked.index')}}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             <div class="icon">
                                 <i class="far fa-comment"></i>
                             </div>
-                            <a href="{{route('admin.category.index')}}" class="small-box-footer">More info <i
+                            <a href="{{route('personal.comment.index')}}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
