@@ -28,9 +28,9 @@ class CommentIndexController extends Controller
         return redirect()->route('personal.comment.index');
     }
 
-    public function delete(Comment $comment): View
+    public function delete(Comment $comment): RedirectResponse
     {
         $comment->delete();
-        return view('personal.comment.index',compact('comment'));
+        return redirect()->route('personal.comment.index');
     }
 }
