@@ -50,7 +50,6 @@
                                         <th>Status</th>
                                         <th>Content</th>
                                         <th>Category</th>
-                                        <th>Tag</th>
                                     </tr>
 
                                     </thead>

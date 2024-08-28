@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Post\PostController;
+use App\Http\Controllers\Post;
 use App\Http\Controllers\Admin\Tag\TagController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Main\IndexController;
@@ -24,6 +25,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', [IndexController::class, 'index'])->name('main.index');
+});
+Route::group(['namespace' => 'Post', 'prefix'=>'posts'], function () {
+    Route::get('/',[Post\IndexController::class, 'index'])->name('post.index');
+    Route::get('/{post}',[Post\IndexController::class, 'show'])->name('post.show');
 });
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'admin']], function () {
     Route::group(['namespace' => 'Main'], function () {
