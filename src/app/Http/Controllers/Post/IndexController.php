@@ -20,6 +20,10 @@ class IndexController extends Controller
     public function show(Post $post): View
     {
         $date = Carbon::parse($post->created_at);
-        return view('post.show' , compact('post', 'date'));
+        $relatedPosts = Post::where('category_id',$post->category_id)
+            ->where('id','!=',$post->id)
+            ->get()
+            ->take(3);
+        return view('post.show' , compact('post', 'date', 'relatedPosts'));
     }
 }
