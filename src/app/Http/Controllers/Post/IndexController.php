@@ -17,7 +17,7 @@ class IndexController extends Controller
         return view('post.index' , compact('posts', 'randomPosts','likedPosts'));
     }
 
-    public function show(Post $post): View
+    public function show(Post $post ): View
     {
         $date = Carbon::parse($post->created_at);
         $relatedPosts = Post::where('category_id',$post->category_id)

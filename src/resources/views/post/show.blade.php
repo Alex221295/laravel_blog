@@ -36,30 +36,34 @@
 
                         </div>
                     </section>
+                    <div class="mb-5">
+                        <h3>
+                            Comments ({{$post->comments->count()}})
+                        </h3>
+                    </div>
+                    <section class="comment-list mb-4">
+                        @foreach($post->comments as $comment)
+                        <div class="comment-text mb-4">
+                            <span class="username">
+                            {{$comment->user->name}}
+                      <span class="text-muted float-right">{{$comment->dateAsCarbon->diffForHumans()}}</span>
+                    </span><!-- /.username -->
+                            <div>
+                                {{$comment->message}}
+                            </div>
+                        </div>
+                        @endforeach
+                    </section>
+                    @auth()
                     <section class="comment-section">
-                        <h2 class="section-title mb-5" data-aos="fade-up">Leave a Reply</h2>
-                        <form action="/" method="post">
+                        <h2 class="section-title mb-5" data-aos="fade-up">Comment</h2>
+                        <form action="{{route('post.comment.store', $post->id)}}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="form-group col-12" data-aos="fade-up">
-                                    <label for="comment" class="sr-only">Comment</label>
-                                    <textarea name="comment" id="comment" class="form-control" placeholder="Comment"
-                                              rows="10">Comment</textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-4" data-aos="fade-right">
-                                    <label for="name" class="sr-only">Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Name*">
-                                </div>
-                                <div class="form-group col-md-4" data-aos="fade-up">
-                                    <label for="email" class="sr-only">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control"
-                                           placeholder="Email*" required>
-                                </div>
-                                <div class="form-group col-md-4" data-aos="fade-left">
-                                    <label for="website" class="sr-only">Website</label>
-                                    <input type="url" name="website" id="website" class="form-control"
-                                           placeholder="Website*">
+                                    <label for="message" class="sr-only">Comment</label>
+                                    <textarea name="message" id="comment" class="form-control" placeholder="Comment"
+                                              rows="10"></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -69,6 +73,7 @@
                             </div>
                         </form>
                     </section>
+                    @endauth
                 </div>
             </div>
         </div>

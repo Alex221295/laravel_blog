@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\Main\AdminIndexController;
 use App\Http\Controllers\Personal\Comment\CommentIndexController;
 use App\Http\Controllers\Personal\Liked\LikedIndexController;
 use App\Http\Controllers\Personal\Main\PersonalIndexController;
+use App\Http\Controllers\Post\Comment\StoreController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +31,9 @@ Route::group(['namespace' => 'Main'], function () {
 Route::group(['namespace' => 'Post', 'prefix'=>'posts'], function () {
     Route::get('/',[Post\IndexController::class, 'index'])->name('post.index');
     Route::get('/{post}',[Post\IndexController::class, 'show'])->name('post.show');
+    Route::group(['namespace' => 'Comment','prefix' => '{post}/comments'], function () {
+        Route::post('/',[StoreController::class, 'store'])->name('post.comment.store');
+    });
 });
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'admin']], function () {
     Route::group(['namespace' => 'Main'], function () {
