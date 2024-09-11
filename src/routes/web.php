@@ -34,6 +34,9 @@ Route::group(['namespace' => 'Post', 'prefix'=>'posts'], function () {
     Route::group(['namespace' => 'Comment','prefix' => '{post}/comments'], function () {
         Route::post('/',[StoreController::class, 'store'])->name('post.comment.store');
     });
+    Route::group(['namespace' => 'Like','prefix' => '{post}/likes'], function () {
+        Route::post('/',[App\Http\Controllers\Post\Like\StoreController::class, 'store'])->name('post.like.index');
+    });
 });
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'admin']], function () {
     Route::group(['namespace' => 'Main'], function () {

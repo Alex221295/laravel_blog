@@ -22,10 +22,31 @@
             </section>
             <div class="row">
                 <div class="col-lg-9 mx-auto">
+                    <section class="py-3">
+                        @auth()
+                        <form method="post" action="{{route('post.like.index',$post->id)}}">
+                            @csrf
+                            <button type="submit" style="border:none; background: none">
+                                    @if(auth()->user()->likedPosts->contains($post->id))
+                                        <i class="fas fa-heart"></i>
+                                    @else
+                                        <i class="far fa-heart"></i>
+                                    @endif
+                            </button>
+                        </form>
+                        @endauth
+                        @guest()
+                            <div>
+                                <span>{{$post->liked_users_count}}</span>
+                                <i class="far fa-heart"></i>
+                            </div>
+                        @endguest
+                    </section>
+                    @if($relatedPosts->count() > 0)
                     <section class="related-posts">
                         <h2 class="section-title mb-4" data-aos="fade-up">Related Posts</h2>
                         <div class="row">
-                            @foreach($relatedPosts as $relatedPost)
+                        @foreach($relatedPosts as $relatedPost)
                                 <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
                                     <img src="{{asset('storage/' . $relatedPost->main_image)}}" alt="related post"
                                          class="post-thumbnail">
@@ -36,6 +57,7 @@
 
                         </div>
                     </section>
+                    @endif
                     <div class="mb-5">
                         <h3>
                             Comments ({{$post->comments->count()}})

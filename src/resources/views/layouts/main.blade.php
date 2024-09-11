@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="edicaMainNav">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{route('post.index')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
@@ -55,9 +55,20 @@
                         <a class="nav-link" href="#"><span
                                 class="flag-icon flag-icon-squared rounded-circle flag-icon-gb"></span> Eng</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Download</a>
-                    </li>
+                    @auth()
+                        <li class="nav-item">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                                <input type="submit" class="nav-link" style="background: none; border: none;" value="Logout">
+                            </form>
+                        </li>
+                    @endauth
+                    @guest()
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('personal.index')}}">Login</a>
+                            @csrf
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </nav>
